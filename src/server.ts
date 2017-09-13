@@ -7,7 +7,7 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 
 // import routers
-
+import PostRouter from './router/PostRouter';
 
 // Server class
 class Server {
@@ -43,7 +43,7 @@ class Server {
         router = express.Router();
 
         this.app.use('/', router);
-        // this.app.use('/api/v1/posts', PostRouter);
+        this.app.use('/api/v1/posts', PostRouter);
 
     }
 }
