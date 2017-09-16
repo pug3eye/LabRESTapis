@@ -20,7 +20,7 @@ let PostSchema: Schema = new Schema({
         default: '',
         required: true
     },
-    featuredImage: {
+    featured_image: {
         type: String,
         default: ''
     }

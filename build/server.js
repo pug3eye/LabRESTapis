@@ -9,6 +9,7 @@ var helmet = require("helmet");
 var cors = require("cors");
 // import routers
 var PostRouter_1 = require("./router/PostRouter");
+var UserRouter_1 = require("./router/UserRouter");
 // Server class
 var Server = /** @class */ (function () {
     function Server() {
@@ -36,6 +37,7 @@ var Server = /** @class */ (function () {
         router = express.Router();
         this.app.use('/', router);
         this.app.use('/api/v1/posts', PostRouter_1.default);
+        this.app.use('/api/v1/users', UserRouter_1.default);
     };
     return Server;
 }());

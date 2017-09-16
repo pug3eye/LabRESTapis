@@ -26,6 +26,10 @@ var UserSchema = new mongoose_1.Schema({
         type: String,
         default: '',
         required: true
-    }
+    },
+    posts: [{
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Post'
+        }]
 });
 exports.default = mongoose_1.model('User', UserSchema);

@@ -21,7 +21,7 @@ var PostSchema = new mongoose_1.Schema({
         default: '',
         required: true
     },
-    featuredImage: {
+    featured_image: {
         type: String,
         default: ''
     }

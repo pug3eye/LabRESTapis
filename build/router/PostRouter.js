@@ -25,15 +25,92 @@ var PostRouter = /** @class */ (function () {
         });
     };
     PostRouter.prototype.GetPost = function (req, res) {
+        var slug = req.params.slug;
+        Post_1.default.findOne({ slug: slug })
+            .then(function (data) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                data: data
+            });
+        })
+            .catch(function (err) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                err: err
+            });
+        });
     };
     PostRouter.prototype.CreatePost = function (req, res) {
+        var title = req.body.title;
+        var slug = req.body.slug;
+        var content = req.body.content;
+        var featured_image = req.body.featured_image;
+        var post = new Post_1.default({
+            title: title,
+            slug: slug,
+            content: content,
+            featured_image: featured_image
+        });
+        post.save()
+            .then(function (data) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                data: data
+            });
+        })
+            .catch(function (err) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                err: err
+            });
+        });
     };
     PostRouter.prototype.UpdatePost = function (req, res) {
+        var slug = req.params.slug;
+        Post_1.default.findOneAndUpdate({ slug: slug }, req.body)
+            .then(function (data) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                data: data
+            });
+        })
+            .catch(function (err) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                err: err
+            });
+        });
     };
     PostRouter.prototype.DeletePost = function (req, res) {
+        var slug = req.params.slug;
+        Post_1.default.findOneAndRemove({ slug: slug })
+            .then(function (data) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                data: data
+            });
+        })
+            .catch(function (err) {
+            var status = res.statusCode;
+            res.json({
+                status: status,
+                err: err
+            });
+        });
     };
     PostRouter.prototype.routes = function () {
         this.router.get('/', this.GetPosts);
+        this.router.get('/:slug', this.GetPost);
+        this.router.post('/', this.CreatePost);
+        this.router.put('/:slug', this.UpdatePost);
+        this.router.delete('/:slug', this.DeletePost);
     };
     return PostRouter;
 }());

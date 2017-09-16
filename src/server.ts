@@ -8,6 +8,7 @@ import * as cors from 'cors';
 
 // import routers
 import PostRouter from './router/PostRouter';
+import UserRouter from './router/UserRouter';
 
 // Server class
 class Server {
@@ -22,7 +23,7 @@ class Server {
 
     public config() {
         // set up mongoose
-        const MONGO_URI = 'mongodb://localhost/LabRESTapis'
+        const MONGO_URI: string = 'mongodb://localhost/LabRESTapis'
         mongoose.connect(MONGO_URI || process.env.MONGODB_URI)
         
         // config
@@ -44,6 +45,7 @@ class Server {
 
         this.app.use('/', router);
         this.app.use('/api/v1/posts', PostRouter);
+        this.app.use('/api/v1/users', UserRouter);
 
     }
 }
